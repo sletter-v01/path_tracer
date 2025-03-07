@@ -4,6 +4,9 @@
 #include <iostream>
 #include <cassert>
 #include <algorithm>
+#if defined(__AVX2__)
+#include <immintrin.h>
+#endif
 
 class Vec3 {
 public:

@@ -1,6 +1,7 @@
 #include "vector.h"
 #include <random>
 #include <functional>
+#include <omp.h>
 
 // Variables statiques pour la génération de nombres aléatoires
 static std::uniform_real_distribution<float> distribution(0.0, 1.0);

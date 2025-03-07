@@ -17,7 +17,7 @@
 void render_section(int start_row, int end_row, const Camera& cam, const HittableList& world, int image_width, int image_height, int samples_per_pixel, int max_depth, Image& image, PathTracer& path_tracer) {
     for (int j = start_row; j <= end_row; ++j) { // Parcourt les lignes de l'image de start_row à end_row
         for (int i = 0; i < image_width; ++i) { // Parcourt les colonnes de l'image
-            Color pixel_color(0, 0, 0); // Initialise la couleur du pixel à noir
+            Color pixel_color(1, 1, 1); // Initialise la couleur du pixel à noir
             for (int s = 0; s < samples_per_pixel; ++s) { // Effectue plusieurs échantillonnages pour le pixel
                 float u = (i + random_float()) / (image_width - 1); // Coordonnée horizontale normalisée avec jitter
                 float v = (j + random_float()) / (image_height - 1); // Coordonnée verticale normalisée avec jitter
@@ -34,10 +34,10 @@ int main() {
     std::cout << "Démarrage du programme de tracé de chemin..." << std::endl;
 
     // Image
-    const auto aspect_ratio = 16.0 / 9.0; // Définition du ratio d'aspect de l'image
-    const int image_width = 1200; // Largeur de l'image
+    const auto aspect_ratio = 3.0 / 2.0; // Définition du ratio d'aspect de l'image
+const int image_width = 600; // Largeur de l'image
     const int image_height = static_cast<int>(image_width / aspect_ratio); // Hauteur de l'image calculée à partir du ratio d'aspect
-    const int samples_per_pixel = 100; // Nombre d'échantillons par pixel pour le rendu anti-aliasing
+    const int samples_per_pixel = 150; // Nombre d'échantillons par pixel pour le rendu anti-aliasing
     const int max_depth = 25; // Profondeur maximale de récursion pour le tracé des rayons
 
     // Journalisation des paramètres d'image

@@ -11,7 +11,7 @@ option(USE_MULTITHREADING "Enable multithreading" ON)
 if(MSVC)
     add_compile_options(/W4 /O2)
 else()
-    add_compile_options(-Wall -Wextra -O3)
+    add_compile_options(-Wall -Wextra -O3 -mavx2 -fopenmp)
 endif()
 
 # Bibliothèques externes
@@ -49,6 +49,7 @@ set(HEADERS
     src/math/ray.h
     src/scene/hittable.h
     src/scene/sphere.h
+    src/scene/rectangular_prism.h
     src/scene/hittable_list.h
     src/scene/material.h
     src/scene/bvh.h
@@ -62,6 +63,7 @@ set(HEADERS
     src/utils/timer.h
     src/utils/random.h
 )
+
 
 # Exécutable
 add_executable(path_tracer ${SOURCES} ${HEADERS})

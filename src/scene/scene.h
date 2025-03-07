@@ -1,7 +1,6 @@
-#pragma once
-
 #include "hittable_list.h"
 #include "sphere.h"
+#include "rectangular_prism.h"
 #include "material.h"
 #include <memory>
 #include <cmath>
@@ -15,13 +14,13 @@ float random_float();
 float random_float(float min, float max);
 
 // Fonction random_scene
-// Cette fonction génère une scène aléatoire composée de sphères avec différents matériaux.
+// Cette fonction génère une scène aléatoire composée de sphères et de pavés droits avec différents matériaux.
 HittableList random_scene(int num_spheres) {
     // Création d'un objet HittableList pour stocker les objets de la scène.
     HittableList world;
 
     // Création du matériau du sol (un Lambertian de couleur grise).
-    auto ground_material = std::make_shared<Lambertian>(Color(0.5, 0.5, 0.5));
+    auto ground_material = std::make_shared<Lambertian>(Color(1, 1, 1));
     // Ajout du sol à la scène (une grande sphère qui simule un plan horizontal).
     world.add(std::make_shared<Sphere>(Point3(0, -1000, 0), 1000, ground_material));
 
@@ -77,6 +76,13 @@ HittableList random_scene(int num_spheres) {
 
     auto material3 = std::make_shared<Metal>(Color(0.7, 0.6, 0.5), 0.0);
     world.add(std::make_shared<Sphere>(Point3(4, 1, 0), 1.0, material3));
+
+    // Ajouter deux pavés droits avec des matériaux spécifiques
+    auto prism_material1 = std::make_shared<Lambertian>(Color(1, 0, 0));
+    world.add(std::make_shared<RectangularPrism>(Point3(-2, 6, -3), 1.0, 1.0, 1.8, prism_material1));
+
+    auto prism_material2 = std::make_shared<Metal>(Color(0.1, 0, 0.9), 0.3);
+    world.add(std::make_shared<RectangularPrism>(Point3(2, 0.5, 3), 1.0, 1.0, 2.0, prism_material2));
 
     // Retourner la liste des objets de la scène.
     return world;
