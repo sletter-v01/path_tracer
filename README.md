@@ -29,8 +29,8 @@ Ce projet est conçu pour :
 
 1. Clonez le repository :
     ```sh
-    git clone https://github.com/sletter-v01/PathTracer.git
-    cd PathTracer
+    git clone https://github.com/sletter-v01/path_tracer.git
+    cd path_tracer
     ```
 
 2. Créez un répertoire de construction et compilez le projet :
