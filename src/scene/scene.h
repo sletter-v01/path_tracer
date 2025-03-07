@@ -4,6 +4,7 @@
 #include "sphere.h"
 #include "material.h"
 #include <memory>
+#include <cmath>
 
 // Déclaration de la fonction random_float
 // Cette fonction renvoie un nombre flottant aléatoire entre 0 et 1.
@@ -28,16 +29,16 @@ HittableList random_scene(int num_spheres) {
     int max_spheres_per_row = static_cast<int>(std::sqrt(num_spheres));
     int count = 0; // Compteur pour le nombre de sphères ajoutées.
 
-    // Boucles pour générer des sphères dans une grille.
-    for (int a = -max_spheres_per_row; a < max_spheres_per_row && count < num_spheres; a++) {
-        for (int b = -max_spheres_per_row; b < max_spheres_per_row && count < num_spheres; b++) {
+    // Boucles pour générer des sphères dans une grille autour du centre de la scène.
+    for (int a = -max_spheres_per_row / 2; a < max_spheres_per_row / 2 && count < num_spheres; a++) {
+        for (int b = -max_spheres_per_row / 2; b < max_spheres_per_row / 2 && count < num_spheres; b++) {
             // Génération d'un matériau aléatoire pour chaque sphère.
             float choose_mat = random_float();
             // Calcul de la position centrale de la sphère.
             Point3 center(a + 0.9 * random_float(), 0.2, b + 0.9 * random_float());
 
-            // Vérifier que l'objet est dans le champ de vision (limité à une zone de 20x20).
-            if (center.x < -10 || center.x > 10 || center.z < -10 || center.z > 10) {
+            // Vérifier que l'objet est dans le champ de vision (limité à une zone de 10x10 autour du centre).
+            if (center.x < -15 || center.x > 15 || center.z < -15 || center.z > 15) {
                 continue; // Sauter cette sphère si elle est hors du champ.
             }
 
